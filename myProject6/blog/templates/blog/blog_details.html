@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>#2 Template</title>
+  </head>
+  <body>
+    <h1>Blog Filter Page</h1>
+    <p>Author Available?:{{post.author|yesno:"Yes,No,MayBe"}}</p>
+    <p>Comments Counts?: {{post.comments_count}} Comment{{post.comments_count|pluralize}}</p>
+    <hr />
+    {% comment %} Date Filter {% endcomment %}
+    <p><b>Created At:</b> {{ post.created_at }}</p>
+    <p><b>Formated Date:</b> {{ post.created_at|date:"D d M Y"}}</p>
+    <p><b>Time Only:</b> {{ post.created_at|time:"H:i" }}</p>
+    {% comment %} Encoding and formatting {% endcomment %}
+    <p><b>Title Encode:</b> {{ post.title|urlencode }}</p>
+    <p><b>Float Formate Example:</b> {{ 123.4567891|floatformat:3 }}</p>
+    <hr />
+    {% comment %} Text Filter {% endcomment %}
+    <p><b>Title (Normal):</b> {{ post.title }}</p>
+    <p><b>UpperCase:</b> {{ post.title|upper }}</p>
+    <p><b>LowerCase:</b> {{ post.title|lower }}</p>
+    <p><b>Capital:</b> {{ post.title|capfirst }}</p>
+    <p><b>Title Case:</b> {{ post.title|title }}</p>
+    <p><b>TrancateChar:</b> {{ post.title|truncatechars:20 }}</p>
+    <p><b>TrancateWord:</b> {{ post.title|truncatewords:2}}</p>
+    <p><b>LineBrack:</b> {{ post.title|linebreaks}}</p>
+    <hr />
+    {% comment %} Add {% endcomment %}
+    <p><b>Original Price:</b> {{ post.price }}</p>
+    <p><b>Original Price(+5):</b> {{ post.price|add:5 }}</p>
+    {% comment %} Division By {% endcomment %} 
+    {% if post.number|divisibleby:2%}
+    <p>{{ post.number }} is Even</p>
+    {% else %}
+    <p>{{ post.number }} is Odd</p>
+    {% endif%}
+    {% comment %} List Filter {% endcomment %}
+    <p><b>first Tag:</b> {{ post.tags|last }}</p>
+    <p><b>Total Tag:</b> {{ post.tags|length }}</p>
+    <p><b>Slice (First 2):</b> {{ post.tags|slice:":2" }}</p>
+    <p><b>Join Tag:</b> {{ post.tags|join:" ," }}</p>
+    <hr />
+  </body>
+</html>
