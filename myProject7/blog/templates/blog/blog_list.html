@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>#3 Template</title>
+  </head>
+  <body>
+    <h1>Blog List</h1>
+    <p>{{today}}</p>
+    {% comment %} If Else {% endcomment %}
+    {% if blogs.1.is_featured%}
+    <h2>Featured Blog: {{ blogs.1.title }}</h2>
+    {% else %}
+    <h2>No Featured Blog: {{ blogs.1.title }}</h2>
+    {% endif%}
+  <ul>
+      {% for blog in blogs%}
+      <li>{{forloop.counter}}. {{blog.title}} - {{blog.author}}</li>
+      {% empty %}
+      <li>No blogs available.</li>
+      {% endfor %}
+    </ul>
+    {% comment %} with {% endcomment %}
+    {% with total_blogs=blogs|length %}
+    <p>Total Blogs: {{total_blogs}}</p>
+    {% endwith %}
+    {% comment %} Cycle {% endcomment %}
+    <hr />
+    <h2>Blogs in Table</h2>
+    <Table border="1" cellpadding="5" cellspacing="0">
+        {% for blog in blogs %}
+        <tr style="background-color: {% cycle 'lightblue' 'lightgreen' %};">
+            <td>{{forloop.counter}}</td>
+            <td>{{blog.title}}</td>
+            <td>{{blog.author}}</td>
+        </tr>
+        {% endfor%}
+    </Table>
+    {% comment %} FirstOf {% endcomment %}
+    <p>Author:{% firstof blog.1.author "ABC"%}</p>
+    {% comment %} varbatim {{}} {% endcomment %}
+    {% verbatim %}
+    <p>Author: {{blog.1.author}}</p>
+    {% endverbatim %}
+    {% comment %} autoescape {% endcomment %}
+    <h2>Autoescape Example</h2>
+    <p>default(Safe Escaped): {{html_code}}</p>
+    <p>autoescape Off: {{html_code|safe}}</p>
+    {% autoescape off%}
+    <p>autoescape Off: {{html_code}}</p>
+    {% endautoescape %}
+  </body>
+</html>
+
