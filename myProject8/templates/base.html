@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %} My Site {% endblock %}</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  </head>
+  <body>
+    {% include "navbar.html" %}
+    <div class="content">
+      {% block content %}
+      {% endblock %}
+    </div>
+    <footer>
+      <p>&copy; 2024 My Site</p>
+    </footer>
+    <script src="{% static 'js/scripts.js' %}"></script>
+  </body>
+</html>
+
