@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block title %} My Title {% endblock %}</title>
+    {% load static %}
+    {% block corecss %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% endblock %}
+  </head>
+  <body>
+    <div class="content">
+      {% block content %}
+      <h1>My Site</h1>
+      {% endblock %}
+    </div>
+  </body>
+</html>
+

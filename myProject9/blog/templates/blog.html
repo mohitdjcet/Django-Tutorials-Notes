@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %} Blog Page {% endblock %}
+{% load static %}
+{% block corecss %}
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+{% endblock %}
+
+{% block content %}
+  <h1>Blog Us</h1>
+  {% regroup students by class as grouped_students %}
+  <ul>
+    {% for group in grouped_students%}
+      <li>Class {{ group.grouper }}
+        <ul>
+          {% for student in group.list %}
+            <li>{{ student.name }}</li>
+          {% endfor %}
+        </ul>
+      </li>
+    {% endfor %}
+  </ul>
+  <p>
+    Progress : {% widthratio 50 100 100 %} %
+  </p>
+  {% spaceless %}
+  <div>
+    <span> This is a </span>
+    <span> Spaceless Example </span>
+  </div>
+  {% endspaceless %}
+  {% filter upper %}
+  This text will be converted to uppercase.
+  {% endfilter %}
+
+  {% for student in students %}
+  <p> {{student.name|lower}} is in class {{student.class|add:"+1"}} </p>
+  {% endfor%}
+{% endblock %}
+
+
+
