@@ -1,0 +1,11 @@
+<header class="header">
+    {% load static %}
+    <img src="{% static 'images/logo.svg' %}" alt="Logo" class="logo">
+    <nav>
+        <ul>
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'contact' %}">Contact</a></li>
+        </ul>
+    </nav>
+</header>
